@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Button } from "antd";
+import d1 from "../img/dummy_600x400_ffffff_00cccc.png";
 
 function Cards() {
   return (
@@ -11,7 +12,7 @@ function Cards() {
           width: 300,
         }}
       >
-        <img alt="img1" href="../img/dummy_600x400_ffffff_00cccc.png" />
+        <img alt="img1" src={d1} />
         <p>
           Type 1 diabetes (referred to in the past as juvenile diabetes) is a
           chronic health condition in which the body's immune system destroys
