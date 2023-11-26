@@ -1,46 +1,83 @@
 import React from "react";
-import { Affix, Col, Menu } from "antd";
-//import { FileImageOutlined } from "@ant-design/icons";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 import logoPath from "../img/Imagen de WhatsApp 2023-09-21 a las 09.18.09.jpg";
-
-const items = [
-  {
-    key: "logo",
-    icon: (
-      <img alt="logo" src={logoPath} style={{ height: "80%", width: "30%" }} />
-    ),
-  },
-  {
-    label: "Information",
-    key: "info",
-  },
-  {
-    label: "Calculator",
-    key: "calc",
-  },
-];
 
 function Navbar() {
   return (
-    <Affix>
-      <Col
-        style={{
-          background:
-            "linear-gradient(to top, #42708a, #000000,#000000,#000000)",
-          width: "100%",
-        }}
-      >
-        <Menu
-          items={items}
-          mode="horizontal"
-          style={{
-            background:
-              "linear-gradient(to top,#4270f0, #42708a,#42708a,#42708a, #42708a)",
-            width: "100%",
-          }}
-        ></Menu>
-      </Col>
-    </Affix>
+    <nav
+      className="navbar navbar-expand-lg bg-body-tertiary navbar_header"
+      style={{ width: "100%" }}
+    >
+      <div className="container-fluid " style={{ backgroundColor: "#42708a" }}>
+        <img
+          src={logoPath}
+          alt="logo"
+          style={{ height: "100px", width: "auto" }}
+        />
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href="#">
+                Home
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#">
+                Login
+              </a>
+            </li>
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Learn More
+              </a>
+              <ul className="dropdown-menu">
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Articles
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="#">
+                    News
+                  </a>
+                </li>
+                <li>
+                  <a className="nav-link disabled">Coming soon</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <form className="d-flex" role="search">
+            <input
+              className="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button className="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
   );
 }
 
