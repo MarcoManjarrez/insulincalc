@@ -21,10 +21,11 @@ function App() {
     <div>
       <CheckLogStatus component={Navbar}/>
       <Routes>
-      <Route path="/" element={isLoggedIn ? <Navigate to="/cards" /> : <Login listener={changeLoggedState} />} />
-      <Route path='/cards' element={<CheckLogStatus component={Cards} />} />
-    </Routes>
-    <Footer />
+        <Route path="/" element={isLoggedIn ? <Navigate to="/cards" /> : <Login listener={changeLoggedState} />} />
+        <Route path='/cards' element={<CheckLogStatus component={Cards} />} />
+        <Route path='/calculator' element={<CheckLogStatus component={Cards} />} />
+      </Routes>
+      <Footer />
     </div>
   );
 }

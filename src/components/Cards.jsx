@@ -1,10 +1,10 @@
 import React from "react";
 import { Card, Button } from "antd";
-import d1 from "../img/dummy_600x400_ffffff_00cccc.png";
+import "./Cards.css";
 
 function Cards() {
   return (
-    <div style={{ display: "flex" }}>
+    <div id="Cards" style={{ display: "flex" }}>
       <Card
         title="Type 1 diabetes"
         bordered={false}
@@ -12,7 +12,7 @@ function Cards() {
           width: 300,
         }}
       >
-        <img alt="img1" src={d1} />
+        <img id="card_image" alt="img1" src={"https://diatribe.org/sites/default/files/images/Drawing-1_sketchpad-2-min.png"} />
         <p>
           Type 1 diabetes (referred to in the past as juvenile diabetes) is a
           chronic health condition in which the body's immune system destroys
@@ -31,9 +31,7 @@ function Cards() {
           width: 300,
         }}
       >
-        <img
-          alt="img2"
-          href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjIEnUkwQUdbyVfkutEwc9ZQDGz_f8IXu1R024nhc-&s"
+        <img id="card_image" alt="img2" src={"https://diatribe.org/sites/default/files/images/Drawing_sketchpad-2-min.png"}
         />
         <p>
           When you think of tools to help you manage diabetes, you likely think
@@ -52,9 +50,7 @@ function Cards() {
           width: 300,
         }}
       >
-        <img
-          alt="img3"
-          href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjIEnUkwQUdbyVfkutEwc9ZQDGz_f8IXu1R024nhc-&s"
+        <img id="card_image" alt="img3" src={"https://media.npr.org/assets/img/2020/01/22/diabetes-alert-dogs-3_custom-5712eaa3c754e1f6a243f43c400a6343f46839fe.jpg"}
         />
         <p>
           Type 2 diabetes is a chronic health condition in which the body has

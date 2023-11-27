@@ -3,10 +3,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import logoPath from "../img/Imagen de WhatsApp 2023-09-21 a las 09.18.09.jpg";
 import { Link } from "react-router-dom";
+import "./Navbar.css";
 
 function Navbar(props) {
   function logOut() {
     props.listener();
+  }
+
+  function searchListener(event) {
+    console.log(event.target.value);
   }
   
   return (
@@ -34,10 +39,10 @@ function Navbar(props) {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-            <Link to="/cards" className="nav-link">Home</Link>
+            <Link to="/cards" className="nav-link " aria-current="page">Home</Link>
             </li>
             <li className="nav-item">
-            {!props.status ? <li className="nav-item"><Link to="/" className="nav-link">Login</Link></li> : <li className="nav-item"><Link to="/" className="btn btn-outline-success" onClick={logOut}>Logout</Link></li>}
+            <Link to="/calculator" className="nav-link ">Calculator</Link>
             </li>
             <li className="nav-item dropdown">
               <a
@@ -50,12 +55,12 @@ function Navbar(props) {
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <a className="dropdown-item disabled" href="#">
                     Articles
                   </a>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <a className="dropdown-item disabled" href="#">
                     News
                   </a>
                 </li>
@@ -65,17 +70,19 @@ function Navbar(props) {
               </ul>
             </li>
           </ul>
-          <form className="d-flex" role="search">
+          <form id="search" onSubmit={searchListener} className="d-flex" role="search">
             <input
               className="form-control me-2"
               type="search"
               placeholder="Search"
               aria-label="Search"
+              disabled
             />
-            <button className="btn btn-outline-success" type="submit">
+            <button className="nav-link" type="submit" disabled>
               Search
             </button>
           </form>
+          {!props.status ? <Link id="login" to="/" className="nav-link">Login</Link> : <Link id="logout" to="/" className="nav-link" onClick={logOut}>Logout</Link>}
         </div>
       </div>
     </nav>
