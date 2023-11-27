@@ -1,16 +1,76 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { CSSTransition } from "react-transition-group";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./Login.css";
 import logoPath from "../img/Imagen de WhatsApp 2023-09-21 a las 09.18.09.jpg";
 
-function Login() {
+function Login(props) {
   const [showComponent, setShowComponent] = useState(true);
+  //const [userProfile, setUserProfile] = useState({user: "", password: ""});
+  const [user, setUser] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const errorStyle = {marginTop: "10px", color: "red"};
 
   useEffect(() => {
     setShowComponent(true);
   }, []);
+
+  /*function userProfileListener(event) {
+    const {value, name} = event.target;
+    setUserProfile((prevValue) => {
+        return { ...prevValue, [name]: value }
+    });
+  }*/
+
+  function userListener(event) {
+    setUser(event.target.value);
+  }
+
+  function passwordListener(event) {
+    setPassword(event.target.value);
+  }
+
+  function submitForm(event) {
+    var apiPath = "";
+    if (process.env.NODE_ENV === "production") {
+        apiPath = "/api";
+    }
+
+    axios
+        .post(apiPath+"/login", {
+            user: user,
+            password: password,
+        })
+        .then((res) => {
+            console.log("Response from server");
+            if (res.data.authorization === 1) {
+                console.log("Logged in");
+                setMessage("");
+                props.listener();
+            } else {
+                console.log("Wrong data");
+                setMessage("Wrong data");
+            }
+        })
+        .catch((err) => {
+            console.error(err.error);
+        });
+    
+      /*if (user === "1234@gmail.com" && password==="1234") {
+        console.log("Logged in");
+        setMessage("");
+        props.listener();
+      } else {
+        console.log("Wrong data");
+        setMessage("Wrong data");
+      }*/
+
+    event.preventDefault();
+  }
+
   return (
     <CSSTransition
       in={showComponent}
@@ -23,10 +83,10 @@ function Login() {
           <div className="container-fluid h-custom">
             <div className="row d-flex justify-content-center align-items-center h-100">
               <div className="col-md-9 col-lg-6 col-xl-5">
-                <img src={logoPath} className="img-fluid" alt="Sample image" />
+                <img src={logoPath} className="img-fluid" alt="..." />
               </div>
               <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                <form>
+                <form onSubmit={submitForm}>
                   <div className="divider d-flex align-items-center my-4"></div>
                   <div className="form-outline mb-4">
                     <input
@@ -34,6 +94,8 @@ function Login() {
                       id="form3Example3"
                       className="form-control form-control-lg"
                       placeholder="Enter a valid email address"
+                      onChange={userListener}
+                      value={user}
                     />
                     <label className="form-label" for="form3Example3">
                       Email address
@@ -45,6 +107,8 @@ function Login() {
                       id="form3Example4"
                       className="form-control form-control-lg"
                       placeholder="Enter password"
+                      onChange={passwordListener}
+                      value={password}
                     />
                     <label className="form-label" for="form3Example4">
                       Password
@@ -63,6 +127,7 @@ function Login() {
                         Remember me
                       </label>
                     </div>
+                    <div style={errorStyle}>{message}</div>
                     <a href="#!" className="text-body">
                       Forgot password?
                     </a>
@@ -70,7 +135,7 @@ function Login() {
 
                   <div className="text-center text-lg-start mt-4 pt-2">
                     <button
-                      type="button"
+                      type="submit"
                       className="btn custom-btn btn-lg"
                       style={{ paddingLeft: "2.5rem", paddingRight: "2.5rem" }}
                     >

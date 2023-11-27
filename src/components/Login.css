@@ -30,3 +30,7 @@ height: calc(100% - 73px);
 height: 100%;
 }
 }
+
+body {
+  background-color: #42708a;
+}

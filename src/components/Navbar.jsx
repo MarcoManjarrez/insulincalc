@@ -2,8 +2,13 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import logoPath from "../img/Imagen de WhatsApp 2023-09-21 a las 09.18.09.jpg";
+import { Link } from "react-router-dom";
 
-function Navbar() {
+function Navbar(props) {
+  function logOut() {
+    props.listener();
+  }
+  
   return (
     <nav
       className="navbar navbar-expand-lg bg-body-tertiary navbar_header"
@@ -29,14 +34,10 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
-                Home
-              </a>
+            <Link to="/cards" className="nav-link">Home</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Login
-              </a>
+            {!props.status ? <li className="nav-item"><Link to="/" className="nav-link">Login</Link></li> : <li className="nav-item"><Link to="/" className="btn btn-outline-success" onClick={logOut}>Logout</Link></li>}
             </li>
             <li className="nav-item dropdown">
               <a
