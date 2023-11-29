@@ -39,7 +39,7 @@ function Navbar(props) {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-            <Link to="/cards" className="nav-link " aria-current="page">Home</Link>
+            <Link to="/cards" className="nav-link " aria-current="page">Information</Link>
             </li>
             <li className="nav-item">
             <Link to="/calculator" className="nav-link ">Calculator</Link>

@@ -1,0 +1,27 @@
+#Calculator {
+    width: 60%;
+    height: 493px;
+}
+
+.calculator_inputs {
+    margin-top: 50px;
+    margin-bottom: 5px;
+}
+
+#card_result {
+    margin-left: 40%;
+    margin-top: 10px;
+    max-width: 20%;
+}
+
+.note_calc {
+    font-family: Poppins;
+}
+
+#card_result {
+    height: 60px;
+}
+
+#result {
+    font-family: Poppins;
+}
