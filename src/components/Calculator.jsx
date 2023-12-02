@@ -1,7 +1,10 @@
 import React, {useState} from "react";
+import axios from "axios";
 import "./Calculator.css";
 
 function Calculator() {
+    const [errorStyle, setErrorStyle] = useState({color: ""});
+    const [message, setMesage] = useState("");
     const [result, setResult] = useState(0);
     const [current_glucose_level, setCurrentGlucoseLevel] = useState();
     const [HC_ratio, setHCRatio] = useState();
@@ -18,14 +21,43 @@ function Calculator() {
     function HCToConsumeListener(event) {
         setHCToConsume(event.target.value);
     }
-
+    
     function calculateForm() {
-        if (!current_glucose_level && !HC_ratio && !HC_to_consume) {
-            
+        if (!current_glucose_level || !HC_ratio || !HC_to_consume) {
+            setErrorStyle({color: "red"});
+            setMesage("Data not fulfilled");
+        } else if (parseInt(current_glucose_level) > 120) {
+            setErrorStyle({color: "orange"});
+            setMesage("Warning! Glucose level higher than range set");
+        } else if (parseInt(current_glucose_level) < 70) {
+            setErrorStyle({color: "orange"});
+            setMesage("Warning! Glucose level lower than range set");
         } else {
-            setResult((HC_to_consume / HC_ratio).toFixed(2));
+            setResult((parseInt(HC_to_consume) / parseInt(HC_ratio)).toFixed(2));
+            setMesage("");
         }
-        
+    }
+
+    function uploadData(event) {
+        var apiPath = "";
+        if (process.env.NODE_ENV === "production") {
+            apiPath = "/api";
+        }
+
+        axios
+            .post(apiPath+"/upload", {
+                current_glucose_level: current_glucose_level,
+                HC_ratio: HC_ratio,
+                HC_to_consume: HC_to_consume,
+            })
+            .then((res) => {
+                console.log("Response from server 2");
+            })
+            .catch((err) => {
+                console.error(err.error);
+            });
+
+        event.preventDefault();
     }
     
     return (
@@ -42,18 +74,20 @@ function Calculator() {
                 </div>
         
                 <div className="calculator">
-                    <form onSubmit={calculateForm}>
+                    <form onSubmit={uploadData}>
                         <div className="calculator_inputs">
                             <input className="input_current_glucose_level" type="text" name="current_glucose_level" 
                             size="25" placeholder="Current glucose level" 
-                            onChange={currentGlucoseLevelListener} value={current_glucose_level}/><br/>
+                            onChange={currentGlucoseLevelListener} value={current_glucose_level} required/><br/>
                             <input className="input_HC_ratio" type="text" name="HC_ratio" size="25" 
-                            placeholder="HC Ratio" onChange={HCRatioListener} value={HC_ratio}/><br/>
+                            placeholder="HC Ratio" onChange={HCRatioListener} value={HC_ratio} required/><br/>
                             <input className="input_HC_to_consume" type="text" name="HC_to_consume" size="25" 
-                            placeholder="HC to consume (gr)" onChange={HCToConsumeListener} value={HC_to_consume}/><br/>
+                            placeholder="HC to consume (gr)" onChange={HCToConsumeListener} value={HC_to_consume} required/><br/>
                         </div>
                         <div>
-                            <input id="btn_calculate" className="btn btn-primary" type="submit" name="btn_calculate" value="Calculate"/>
+                            <input id="btn_calculate" className="btn btn-primary" onClick={calculateForm} type="button" name="btn_calculate" value="Calculate"/>
+                            <input id="btn_upload" className="btn btn-primary" type="submit" name="btn_upload" value="Upload"/>
+                            <div id="error_input" style={errorStyle}>{message}</div>
                             <div id="card_result" className="card d-flex align-items-center justify-content-center">
                                 <div className="card-body">
                                     <label id="result" for="btn_calculate">R: <span>{result}</span></label>

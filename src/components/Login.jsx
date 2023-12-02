@@ -45,7 +45,6 @@ function Login(props) {
             password: password,
         })
         .then((res) => {
-            console.log("Response from server");
             if (res.data.authorization === 1) {
                 console.log("Logged in");
                 setMessage("");
@@ -58,15 +57,6 @@ function Login(props) {
         .catch((err) => {
             console.error(err.error);
         });
-    
-      /*if (user === "1234@gmail.com" && password==="1234") {
-        console.log("Logged in");
-        setMessage("");
-        props.listener();
-      } else {
-        console.log("Wrong data");
-        setMessage("Wrong data");
-      }*/
 
     event.preventDefault();
   }
@@ -88,7 +78,7 @@ function Login(props) {
               <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                 <form onSubmit={submitForm}>
                   <div className="divider d-flex align-items-center my-4"></div>
-                  <div className="form-outline mb-4">
+                  <div id="user" className="form-outline mb-4">
                     <input
                       type="email"
                       id="form3Example3"
@@ -96,12 +86,13 @@ function Login(props) {
                       placeholder="Enter a valid email address"
                       onChange={userListener}
                       value={user}
+                      required
                     />
                     <label className="form-label" for="form3Example3">
                       Email address
                     </label>
                   </div>
-                  <div className="form-outline mb-3">
+                  <div id="password" className="form-outline mb-3">
                     <input
                       type="password"
                       id="form3Example4"
@@ -109,13 +100,14 @@ function Login(props) {
                       placeholder="Enter password"
                       onChange={passwordListener}
                       value={password}
+                      required
                     />
                     <label className="form-label" for="form3Example4">
                       Password
                     </label>
                   </div>
-
-                  <div className="d-flex justify-content-between align-items-center">
+                  <div id="login_error" style={errorStyle}>{message}</div>
+                  <div id="other_data" className="d-flex justify-content-between align-items-center">
                     <div className="form-check mb-0">
                       <input
                         className="form-check-input me-2"
@@ -127,7 +119,6 @@ function Login(props) {
                         Remember me
                       </label>
                     </div>
-                    <div style={errorStyle}>{message}</div>
                     <a href="#!" className="text-body">
                       Forgot password?
                     </a>

@@ -15,7 +15,6 @@ function App() {
   }
 
   function CheckLogStatus(props) {
-    console.log(isLoggedIn);
     return isLoggedIn ? <props.component status={isLoggedIn} listener={changeLoggedState}/> : <Navigate to="/"/>;
   }
 
@@ -24,7 +23,7 @@ function App() {
       <CheckLogStatus component={Navbar}/>
       <Routes>
         <Route path="/" element={isLoggedIn ? <Navigate to="/calculator" /> : <Login listener={changeLoggedState} />} />
-        <Route path='/cards' element={<CheckLogStatus component={Cards} />} />
+        <Route path='/information' element={<CheckLogStatus component={Cards} />} />
         <Route path='/calculator' element={<CheckLogStatus component={Calculator} />} />
       </Routes>
       <Footer />

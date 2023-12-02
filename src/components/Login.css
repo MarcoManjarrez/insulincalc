@@ -34,3 +34,11 @@ height: 100%;
 #logo_login {
   border-radius: 50%;
 }
+
+#password {
+  margin-bottom: 5px;
+}
+
+#other_data {
+  margin-top: 10px;
+}
