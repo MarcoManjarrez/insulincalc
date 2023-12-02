@@ -13,7 +13,7 @@ function Navbar(props) {
   function searchListener(event) {
     console.log(event.target.value);
   }
-  
+
   return (
     <nav
       className="navbar navbar-expand-lg bg-body-tertiary navbar_header"
@@ -39,10 +39,14 @@ function Navbar(props) {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-            <Link to="/cards" className="nav-link " aria-current="page">Information</Link>
+              <Link to="/cards" className="nav-link " aria-current="page">
+                Information
+              </Link>
             </li>
             <li className="nav-item">
-            <Link to="/calculator" className="nav-link ">Calculator</Link>
+              <Link to="/calculator" className="nav-link ">
+                Calculator
+              </Link>
             </li>
             <li className="nav-item dropdown">
               <a
@@ -55,14 +59,21 @@ function Navbar(props) {
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  <a className="dropdown-item disabled" href="#">
-                    Articles
+                  <a
+                    className="dropdown-item "
+                    href="https://sdgs.un.org/es/goals"
+                  >
+                    UN's sustainability goals
                   </a>
                 </li>
                 <li>
-                  <a className="dropdown-item disabled" href="#">
-                    News
-                  </a>
+                  <Link
+                    className="dropdown-item "
+                    to="/aboutus"
+                    aria-current="page"
+                  >
+                    About us
+                  </Link>
                 </li>
                 <li>
                   <a className="nav-link disabled">Coming soon</a>
@@ -70,7 +81,12 @@ function Navbar(props) {
               </ul>
             </li>
           </ul>
-          <form id="search" onSubmit={searchListener} className="d-flex" role="search">
+          <form
+            id="search"
+            onSubmit={searchListener}
+            className="d-flex"
+            role="search"
+          >
             <input
               className="form-control me-2"
               type="search"
@@ -82,7 +98,15 @@ function Navbar(props) {
               Search
             </button>
           </form>
-          {!props.status ? <Link id="login" to="/" className="nav-link">Login</Link> : <Link id="logout" to="/" className="nav-link" onClick={logOut}>Logout</Link>}
+          {!props.status ? (
+            <Link id="login" to="/" className="nav-link">
+              Login
+            </Link>
+          ) : (
+            <Link id="logout" to="/" className="nav-link" onClick={logOut}>
+              Logout
+            </Link>
+          )}
         </div>
       </div>
     </nav>

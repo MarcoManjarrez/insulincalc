@@ -76,7 +76,7 @@ app.use("/", async (req, res, next) => {
 
         if (userCount === 0) {
             await User.insertMany(firstUsers).then(() => {
-                console.log("Succes!");
+                console.log("Success!");
             }
             ).catch((error) => {
                 console.error(error);
@@ -99,7 +99,7 @@ app.use("/", async (req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-    res.send('<h1> Not a rederable API </h1>');
+    res.send('<h1> Not a readable API </h1>');
 });
 
 app.post("/login", async(req, res, next) => {

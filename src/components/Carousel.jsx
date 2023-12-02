@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Button } from "antd";
 import "./Cards.css";
 
-function Cards() {
+function Carousel() {
   return (
     <div id="Cards" style={{ display: "flex" }}>
       <Card
@@ -12,7 +12,13 @@ function Cards() {
           width: 300,
         }}
       >
-        <img id="card_image" alt="img1" src={"https://diatribe.org/sites/default/files/images/Drawing-1_sketchpad-2-min.png"} />
+        <img
+          id="card_image"
+          alt="img1"
+          src={
+            "https://diatribe.org/sites/default/files/images/Drawing-1_sketchpad-2-min.png"
+          }
+        />
         <p>
           Type 1 diabetes (referred to in the past as juvenile diabetes) is a
           chronic health condition in which the body's immune system destroys
@@ -31,7 +37,12 @@ function Cards() {
           width: 300,
         }}
       >
-        <img id="card_image" alt="img2" src={"https://diatribe.org/sites/default/files/images/Drawing_sketchpad-2-min.png"}
+        <img
+          id="card_image"
+          alt="img2"
+          src={
+            "https://diatribe.org/sites/default/files/images/Drawing_sketchpad-2-min.png"
+          }
         />
         <p>
           When you think of tools to help you manage diabetes, you likely think
@@ -50,7 +61,12 @@ function Cards() {
           width: 300,
         }}
       >
-        <img id="card_image" alt="img3" src={"https://media.npr.org/assets/img/2020/01/22/diabetes-alert-dogs-3_custom-5712eaa3c754e1f6a243f43c400a6343f46839fe.jpg"}
+        <img
+          id="card_image"
+          alt="img3"
+          src={
+            "https://media.npr.org/assets/img/2020/01/22/diabetes-alert-dogs-3_custom-5712eaa3c754e1f6a243f43c400a6343f46839fe.jpg"
+          }
         />
         <p>
           Type 2 diabetes is a chronic health condition in which the body has
@@ -66,4 +82,4 @@ function Cards() {
   );
 }
 
-export default Cards;
+export default Carousel;
