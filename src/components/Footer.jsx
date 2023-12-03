@@ -55,13 +55,6 @@ function Footer() {
             </p>
           </div>
         </div>
-        <div class="row mt-5">
-          <div class="col copyright">
-            <p class="">
-              <small class="text-white-50">© 2023. All Rights Reserved.</small>
-            </p>
-          </div>
-        </div>
       </div>
     </div>
   );

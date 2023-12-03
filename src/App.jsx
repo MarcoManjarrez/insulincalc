@@ -50,7 +50,7 @@ function App() {
           element={<CheckLogStatus component={AboutTab} />}
         />
       </Routes>
-      <Footer />
+      {isLoggedIn && <Footer />}
     </div>
   );
 }

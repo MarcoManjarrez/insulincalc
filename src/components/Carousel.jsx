@@ -1,83 +1,99 @@
 import React from "react";
-import { Card, Button } from "antd";
-import "./Cards.css";
+import dogimage from "../img/servdogs.jpg";
+import diabimage from "../img/diabetest1.jpg";
+import selfcontimage from "../img/my-goals.jpg";
 
 function Carousel() {
   return (
-    <div id="Cards" style={{ display: "flex" }}>
-      <Card
-        title="Type 1 diabetes"
-        bordered={false}
-        style={{
-          width: 300,
-        }}
+    <div
+      id="carousel"
+      class="carousel slide"
+      style={{
+        height: "500px",
+        width: "700px",
+        margin: "auto",
+        marginTop: "10px",
+      }}
+    >
+      <div class="carousel-indicators">
+        <button
+          type="button"
+          data-bs-target="#carousel"
+          data-bs-slide-to="0"
+          class="active"
+          aria-current="true"
+          aria-label="Slide 1"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carousel"
+          data-bs-slide-to="1"
+          aria-label="Slide 2"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carousel"
+          data-bs-slide-to="2"
+          aria-label="Slide 3"
+        ></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src={diabimage} class="d-block w-100" alt="diabetes1" />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Diabetes type 1</h5>
+            <p>
+              There are many types of diabetes, and each one has a different
+              effect on the body{" "}
+            </p>
+            <a href="https://diatribe.org/type-1-diabetes">Learn more</a>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src={dogimage} class="d-block w-100" alt="servicedogs" />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Service dogs for the diabetic</h5>
+            <p>
+              Many people dont know that service dogs can help for more than
+              blindness and company
+            </p>
+            <a href="https://diatribe.org/diabetes-ruff-diving-world-diabetes-service-dogs">
+              Learn more
+            </a>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src={selfcontimage} class="d-block w-100" alt="DSMES" />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Diabetes education</h5>
+            <p>
+              We offer a service to help those with diabetes, but learning more
+              of the self-management is imperative
+            </p>
+            <a href="https://www.cdc.gov/diabetes/managing/education.html">
+              Learn about DSMES
+            </a>
+          </div>
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carousel"
+        data-bs-slide="prev"
       >
-        <img
-          id="card_image"
-          alt="img1"
-          src={
-            "https://diatribe.org/sites/default/files/images/Drawing-1_sketchpad-2-min.png"
-          }
-        />
-        <p>
-          Type 1 diabetes (referred to in the past as juvenile diabetes) is a
-          chronic health condition in which the body's immune system destroys
-          the cells in the pancreas that produce insulin. Insulin is needed to
-          convert sugar (also called glucose) from food into energy for most of
-          the body’s cells.
-        </p>
-        <Button type="primary" href="https://diatribe.org/type-1-diabetes">
-          Learn more
-        </Button>
-      </Card>
-      <Card
-        title="Diabetes is Ruff: Diving into the World of Diabetes Service Dogs"
-        bordered={false}
-        style={{
-          width: 300,
-        }}
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carousel"
+        data-bs-slide="next"
       >
-        <img
-          id="card_image"
-          alt="img2"
-          src={
-            "https://diatribe.org/sites/default/files/images/Drawing_sketchpad-2-min.png"
-          }
-        />
-        <p>
-          When you think of tools to help you manage diabetes, you likely think
-          of therapies and devices – but what about dogs? We spoke with Mark
-          Ruefenacht, who trained the first diabetes service dog in the world,
-          to learn how these special animals can support people with diabetes.
-        </p>
-        <Button type="primary" href="https://diatribe.org/type-1-diabetes">
-          Learn more
-        </Button>
-      </Card>
-      <Card
-        title="Type 2 diabetes"
-        bordered={false}
-        style={{
-          width: 300,
-        }}
-      >
-        <img
-          id="card_image"
-          alt="img3"
-          src={
-            "https://media.npr.org/assets/img/2020/01/22/diabetes-alert-dogs-3_custom-5712eaa3c754e1f6a243f43c400a6343f46839fe.jpg"
-          }
-        />
-        <p>
-          Type 2 diabetes is a chronic health condition in which the body has
-          trouble processing glucose (or sugar) from the bloodstream to use for
-          energy. It means your body isn’t using insulin effectively, and it’s
-          characterized by high blood sugar levels.
-        </p>
-        <Button type="primary" href="https://diatribe.org/type-1-diabetes">
-          Learn more
-        </Button>
-      </Card>
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
   );
 }
