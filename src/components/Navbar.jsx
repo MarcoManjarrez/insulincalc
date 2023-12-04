@@ -48,6 +48,11 @@ function Navbar(props) {
                 Calculator
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to="/history_and_stadistics" className="nav-link ">
+                History and Stadistics
+              </Link>
+            </li>
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
@@ -87,16 +92,6 @@ function Navbar(props) {
             className="d-flex"
             role="search"
           >
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-              disabled
-            />
-            <button className="nav-link" type="submit" disabled>
-              Search
-            </button>
           </form>
           {!props.status ? (
             <Link id="login" to="/" className="nav-link">

@@ -9,6 +9,10 @@ function Calculator() {
   const [current_glucose_level, setCurrentGlucoseLevel] = useState();
   const [HC_ratio, setHCRatio] = useState();
   const [HC_to_consume, setHCToConsume] = useState();
+  const [min_glucose_range, setMinGlucoseRange] = useState();
+  const [max_glucose_range, setMaxGlucoseRange] = useState();
+  const ideal_glucose_level = 100;
+  const [correction_index, setCorrectionIndex] = useState();
 
   function currentGlucoseLevelListener(event) {
     setCurrentGlucoseLevel(event.target.value);
@@ -22,18 +26,28 @@ function Calculator() {
     setHCToConsume(event.target.value);
   }
 
+  function minGlucoseLevelListener(event) {
+    setMinGlucoseRange(event.target.value);
+  }
+
+  function maxGlucoseLevelListener(event) {
+    setMaxGlucoseRange(event.target.value);
+  }
+
+  function correctionIndexListener(event) {
+    setCorrectionIndex(event.target.value);
+  }
+
   function calculateForm() {
     if (!current_glucose_level || !HC_ratio || !HC_to_consume) {
       setErrorStyle({ color: "red" });
       setMesage("Data not fulfilled");
-    } else if (parseInt(current_glucose_level) > 120) {
-      setErrorStyle({ color: "orange" });
-      setMesage("Warning! Glucose level higher than range set");
-    } else if (parseInt(current_glucose_level) < 70) {
-      setErrorStyle({ color: "orange" });
-      setMesage("Warning! Glucose level lower than range set");
     } else {
-      setResult((parseInt(HC_to_consume) / parseInt(HC_ratio)).toFixed(2));
+      var correction = 0;
+
+      if (current_glucose_level >= max_glucose_range) correction = (parseInt(current_glucose_level) - ideal_glucose_level)/parseInt(correction_index);
+
+      setResult(((parseInt(HC_to_consume) / parseInt(HC_ratio)) + correction).toFixed(1));
       setMesage("");
     }
   }
@@ -46,12 +60,23 @@ function Calculator() {
 
     axios
       .post(apiPath + "/upload", {
-        current_glucose_level: current_glucose_level,
-        HC_ratio: HC_ratio,
-        HC_to_consume: HC_to_consume,
+        current_glucose_level: parseInt(current_glucose_level),
+        HC_ratio: parseInt(HC_ratio),
+        HC_to_consume: parseInt(HC_to_consume),
+        min_glucose_range: parseInt(min_glucose_range),
+        max_glucose_range: parseInt(max_glucose_range),
+        correction_index: parseInt(correction_index),
+        units: result,
       })
       .then((res) => {
         console.log("Response from server 2");
+        setCurrentGlucoseLevel("");
+        setHCRatio("");
+        setHCToConsume("");
+        setMinGlucoseRange("");
+        setMaxGlucoseRange("");
+        setCorrectionIndex("");
+        setResult(0);
       })
       .catch((err) => {
         console.error(err.error);
@@ -62,29 +87,22 @@ function Calculator() {
 
   return (
     <div id="Calculator" className="card text-center mx-auto">
-      <div class="card-header">Insuline Calculator</div>
-      <div className="card-body">
+      <div className="card-header">Insuline Calculator</div>
+      <div id="card_body" className="card-body">
         <div className="note_calc">
           <h5>
-            Note: This calculator is able to calculate the units of insuline
-            necessary for people with Diabetes type 1.{" "}
+            Note: This calculator is able to calculate the units of<br/>insuline
+            necessary for people with Diabetes type 1.<br/>The calculator has a base 
+            data input for the range of glucose in<br/>minimum and maximum 
+            level of glucose which the user has.<br/>The user must insert the current level of glucose, ratio of HC
+            (hydrocarbons)<br/>per unit of insuline and the amount to consume in
+            grams.
           </h5>
-          <ul>
-            <li>
-              The calculator has a base datafor the range of glucose in minimum
-              70 and maximum 120
-            </li>
-            <li>
-              The usemustr insert the current level of glucose, ratio of HC
-              (hydrocarbons)per unit of insuline and the amount to consume in
-              grams.
-            </li>
-          </ul>
         </div>
-
         <div className="calculator">
           <form onSubmit={uploadData}>
-            <div className="calculator_inputs">
+            <h5>Food inputs</h5>
+            <div className="calculator_food_inputs">
               <input
                 className="input_current_glucose_level"
                 type="text"
@@ -115,6 +133,41 @@ function Calculator() {
                 placeholder="HC to consume (gr)"
                 onChange={HCToConsumeListener}
                 value={HC_to_consume}
+                required
+              />
+              <br />
+            </div>
+            <div className="calculator_correction_inputs">
+              <h5>Correction inputs</h5>
+              <input
+                className="input_min_glucose_range"
+                type="text"
+                name="min_glucose_range"
+                size="25"
+                placeholder="Minimum glucose level range"
+                onChange={minGlucoseLevelListener}
+                value={min_glucose_range}
+                required
+              />
+              <input
+                className="input_max_glucose_range"
+                type="text"
+                name="max_glucose_range"
+                size="25"
+                placeholder="Maximum glucose level range"
+                onChange={maxGlucoseLevelListener}
+                value={max_glucose_range}
+                required
+              />
+              <br />
+              <input
+                className="input_correction_index"
+                type="text"
+                name="correction_index"
+                size="25"
+                placeholder="Correction index"
+                onChange={correctionIndexListener}
+                value={correction_index}
                 required
               />
               <br />

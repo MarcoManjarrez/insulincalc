@@ -1,21 +1,35 @@
 #Calculator {
     width: 60%;
-    height: 493px;
+    height: max-content;
 }
 
-.calculator_inputs {
+#card_body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.calculator__food_inputs {
+    margin-top: 50px;
+    margin-bottom: 5px;
+}
+
+.calculator__correction_inputs {
     margin-top: 50px;
     margin-bottom: 5px;
 }
 
 #card_result {
-    margin-left: 40%;
+    margin-left: 33%;
     margin-top: 10px;
-    max-width: 20%;
+    max-width: 40%;
 }
 
 .note_calc {
     font-family: Poppins;
+    max-width: fit-content;
+    align-items: center;
 }
 
 #card_result {

@@ -8,22 +8,16 @@ import logoPath from "../img/Imagen de WhatsApp 2023-09-21 a las 09.18.09.jpg";
 
 function Login(props) {
   const [showComponent, setShowComponent] = useState(true);
-  //const [userProfile, setUserProfile] = useState({user: "", password: ""});
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [isRegisterMode, setRegisterMode] = useState(false);
   const errorStyle = {marginTop: "10px", color: "red"};
 
   useEffect(() => {
     setShowComponent(true);
   }, []);
-
-  /*function userProfileListener(event) {
-    const {value, name} = event.target;
-    setUserProfile((prevValue) => {
-        return { ...prevValue, [name]: value }
-    });
-  }*/
 
   function userListener(event) {
     setUser(event.target.value);
@@ -33,7 +27,19 @@ function Login(props) {
     setPassword(event.target.value);
   }
 
-  function submitForm(event) {
+  function confirmPasswordListener(event) {
+    setConfirmPassword(event.target.value);
+  }
+
+  function toggleMode() {
+    setRegisterMode(!isRegisterMode);
+    setUser("");
+    setPassword("");
+    setConfirmPassword("");
+    setMessage("");
+  }
+
+  function submitForm_Login(event) {
     var apiPath = "";
     if (process.env.NODE_ENV === "production") {
         apiPath = "/api";
@@ -61,6 +67,39 @@ function Login(props) {
     event.preventDefault();
   }
 
+  function submitForm_Register(event) {
+    var apiPath = "";
+    if (process.env.NODE_ENV === "production") {
+        apiPath = "/api";
+    }
+    
+    if (password === confirmPassword) {
+      axios
+        .post(apiPath+"/register", {
+            user: user,
+            password: password,
+        })
+        .then((res) => {
+            if (res.data.user_coincidence === 1) {
+              console.log("User already extists");
+              setMessage("User already extists");
+            } else {
+              console.log("Registered and Logged in");
+              setMessage("");
+              props.listener();
+            }
+        })
+        .catch((err) => {
+            console.error(err.error);
+        });
+
+      event.preventDefault();
+    } else {
+      setMessage("No coincidence on passwords");
+      event.preventDefault();
+    }
+  }
+
   return (
     <CSSTransition
       in={showComponent}
@@ -76,7 +115,69 @@ function Login(props) {
                 <img id="logo_login" src={logoPath} className="img-fluid" alt="..." />
               </div>
               <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                <form onSubmit={submitForm}>
+              <button className="btn custom-btn btn-lg" onClick={toggleMode}>
+                {isRegisterMode ? "Switch to Login" : "Switch to Register"}
+              </button>
+              {isRegisterMode ? 
+                <form onSubmit={submitForm_Register}>
+                  <div className="divider d-flex align-items-center my-4"></div>
+                  <div id="user" className="form-outline mb-4">
+                    <input
+                      type="email"
+                      id="form3Example3"
+                      className="form-control form-control-lg"
+                      placeholder="Enter a valid email address"
+                      onChange={userListener}
+                      value={user}
+                      required
+                    />
+                    <label className="form-label" for="form3Example3">
+                      Email address
+                    </label>
+                  </div>
+                  <div id="password" className="form-outline mb-3">
+                    <input
+                      type="password"
+                      id="form3Example4"
+                      className="form-control form-control-lg"
+                      placeholder="Enter password"
+                      onChange={passwordListener}
+                      value={password}
+                      required
+                    />
+                    <label className="form-label" for="form3Example4">
+                      Password
+                    </label>
+                  </div>
+                  <div id="confirm_password" className="form-outline mb-3">
+                    <input
+                      type="password"
+                      id="form3Example5"
+                      className="form-control form-control-lg"
+                      placeholder="Confirm password"
+                      onChange={confirmPasswordListener}
+                      value={confirmPassword}
+                      required
+                    />
+                    <label className="form-label" for="form3Example4">
+                      Confirm password
+                    </label>
+                  </div>
+                  
+                  <div id="login_error" style={errorStyle}>{message}</div>
+
+                  <div className="text-center text-lg-start mt-4 pt-2">
+                    <button
+                      type="submit"
+                      className="btn custom-btn btn-lg"
+                      style={{ paddingLeft: "2.5rem", paddingRight: "2.5rem" }}
+                    >
+                      Sign in
+                    </button>
+                  </div>
+                </form>
+              :
+                <form onSubmit={submitForm_Login}>
                   <div className="divider d-flex align-items-center my-4"></div>
                   <div id="user" className="form-outline mb-4">
                     <input
@@ -132,14 +233,9 @@ function Login(props) {
                     >
                       Login
                     </button>
-                    <p className="small fw-bold mt-2 pt-1 mb-0">
-                      Don't have an account?{" "}
-                      <a href="#!" className="link-danger">
-                        Register
-                      </a>
-                    </p>
                   </div>
                 </form>
+              }
               </div>
             </div>
           </div>

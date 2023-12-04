@@ -7,7 +7,7 @@ function Carousel() {
   return (
     <div
       id="carousel"
-      class="carousel slide"
+      className="carousel slide"
       style={{
         height: "500px",
         width: "700px",
@@ -15,12 +15,12 @@ function Carousel() {
         marginTop: "10px",
       }}
     >
-      <div class="carousel-indicators">
+      <div className="carousel-indicators">
         <button
           type="button"
           data-bs-target="#carousel"
           data-bs-slide-to="0"
-          class="active"
+          className="active"
           aria-current="true"
           aria-label="Slide 1"
         ></button>
@@ -37,10 +37,10 @@ function Carousel() {
           aria-label="Slide 3"
         ></button>
       </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src={diabimage} class="d-block w-100" alt="diabetes1" />
-          <div class="carousel-caption d-none d-md-block">
+      <div className="carousel-inner">
+        <div className="carousel-item active">
+          <img src={diabimage} className="d-block w-100" alt="diabetes1" />
+          <div className="carousel-caption d-none d-md-block">
             <h5>Diabetes type 1</h5>
             <p>
               There are many types of diabetes, and each one has a different
@@ -49,9 +49,9 @@ function Carousel() {
             <a href="https://diatribe.org/type-1-diabetes">Learn more</a>
           </div>
         </div>
-        <div class="carousel-item">
-          <img src={dogimage} class="d-block w-100" alt="servicedogs" />
-          <div class="carousel-caption d-none d-md-block">
+        <div className="carousel-item">
+          <img src={dogimage} className="d-block w-100" alt="servicedogs" />
+          <div className="carousel-caption d-none d-md-block">
             <h5>Service dogs for the diabetic</h5>
             <p>
               Many people dont know that service dogs can help for more than
@@ -62,9 +62,9 @@ function Carousel() {
             </a>
           </div>
         </div>
-        <div class="carousel-item">
-          <img src={selfcontimage} class="d-block w-100" alt="DSMES" />
-          <div class="carousel-caption d-none d-md-block">
+        <div className="carousel-item">
+          <img src={selfcontimage} className="d-block w-100" alt="DSMES" />
+          <div className="carousel-caption d-none d-md-block">
             <h5>Diabetes education</h5>
             <p>
               We offer a service to help those with diabetes, but learning more
@@ -77,22 +77,22 @@ function Carousel() {
         </div>
       </div>
       <button
-        class="carousel-control-prev"
+        className="carousel-control-prev"
         type="button"
         data-bs-target="#carousel"
         data-bs-slide="prev"
       >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
+        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span className="visually-hidden">Previous</span>
       </button>
       <button
-        class="carousel-control-next"
+        className="carousel-control-next"
         type="button"
         data-bs-target="#carousel"
         data-bs-slide="next"
       >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
+        <span className="carousel-control-next-icon" aria-hidden="true"></span>
+        <span className="visually-hidden">Next</span>
       </button>
     </div>
   );
