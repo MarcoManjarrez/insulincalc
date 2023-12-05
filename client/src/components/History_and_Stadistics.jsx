@@ -36,7 +36,7 @@ function History_and_Stadistics() {
             .get(apiPath+"/user")
             .then((res) => {
                 console.log("Response of server 3");
-                console.log("Res.data: " + res + ", " + res.data.response + ", " + res.data.match);
+                console.log("Res.data: " + res + ", " + res.data);
                 setLoggedUser(res.data.match);
                 updateAvailableYears(res.data.calculator);
             })
