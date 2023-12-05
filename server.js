@@ -165,11 +165,7 @@ app.post("/upload", async(req, res, next) => {
 
 app.get("/user", async(req, res, next) => {
     var match = await User.findOne({user: {$eq: logged_user.user}});
-    if (match) {
-        res.json(match);
-    } else {
-        res.json(logged_user);
-    }
+    res.json(match);
 });
 
 app.listen(PORT, () => {
