@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Calculator from "./components/Calculator";
 import AboutTab from "./components/AboutTab";
-import History_and_Stadistics from "./components/History_and_Stadistics";
+import History_and_Statistics from "./components/History_and_Statistics";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
@@ -51,8 +51,8 @@ function App() {
           element={<CheckLogStatus component={AboutTab} />}
         />
         <Route
-          path="/history_and_stadistics"
-          element={<CheckLogStatus component={History_and_Stadistics} />}
+          path="/history_and_statistics"
+          element={<CheckLogStatus component={History_and_Statistics} />}
         />
       </Routes>
       {isLoggedIn && <Footer />}

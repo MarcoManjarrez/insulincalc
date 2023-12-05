@@ -49,8 +49,8 @@ function Navbar(props) {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/history_and_stadistics" className="nav-link ">
-                History and Stadistics
+              <Link to="/history_and_statistics" className="nav-link ">
+                History and StaTistics
               </Link>
             </li>
             <li className="nav-item dropdown">

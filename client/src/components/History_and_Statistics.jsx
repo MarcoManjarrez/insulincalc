@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./History_and_Stadistics.css";
+import "./History_and_Statistics.css";
 
 function History_and_Stadistics() {
     const [loggedUser, setLoggedUser] = useState({
