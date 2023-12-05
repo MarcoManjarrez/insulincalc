@@ -165,7 +165,6 @@ app.post("/upload", async(req, res, next) => {
 
 app.get("/user", async(req, res, next) => {
     var match = await User.findOne({user: {$eq: logged_user.user}});
-    console.log("This is match: "+match);
     if (match) {
         res.json(match);
     } else {

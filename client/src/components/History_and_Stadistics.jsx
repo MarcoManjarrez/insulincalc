@@ -35,6 +35,7 @@ function History_and_Stadistics() {
         axios
             .get(apiPath+"/user")
             .then((res) => {
+                console.log("Response of server 3");
                 setLoggedUser((prevLoggedUser) => ({
                     ...prevLoggedUser,
                     ...res.data,
@@ -63,7 +64,6 @@ function History_and_Stadistics() {
 
     useEffect(() => {
         var filteredData = loggedUser.calculator.slice(1).filter((element) => new Date(element.date).getFullYear() === currentYear);
-        console.log(currentYear);
         setUserData(filteredData.map((element, index) => (
             <tr key={index}>
                 <td>{new Date(element.date).getDate() + "/" + new Date(element.date).getMonth() + "/" 
