@@ -91,7 +91,6 @@ app.get("/", (req, res) => {
 
 app.post("/login", async(req, res, next) => {
     var match = await User.findOne({user: {$eq: req.body.user}});
-    console.log("Match: "+match);
     var user = req.body.user;
     var password = req.body.password;
     var response = {user: user, password: password, access: "Denied", authorization: -1};

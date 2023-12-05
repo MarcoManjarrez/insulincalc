@@ -41,9 +41,7 @@ function Login(props) {
 
   function submitForm_Login(event) {
     var apiPath = "";
-    if (process.env.NODE_ENV === "production") {
-        apiPath = "/api";
-    }
+    //if (process.env.NODE_ENV === "production") apiPath = "/api";
 
     axios
         .post(apiPath+"/login", {
