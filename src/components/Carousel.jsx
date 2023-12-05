@@ -2,6 +2,7 @@ import React from "react";
 import dogimage from "../img/servdogs.jpg";
 import diabimage from "../img/diabetest1.jpg";
 import selfcontimage from "../img/my-goals.jpg";
+import NewsApi from "./NewsApi.jsx";
 
 function Carousel() {
   return (
@@ -94,6 +95,7 @@ function Carousel() {
         <span className="carousel-control-next-icon" aria-hidden="true"></span>
         <span className="visually-hidden">Next</span>
       </button>
+      <NewsApi />
     </div>
   );
 }
