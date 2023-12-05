@@ -7,7 +7,7 @@ const path = require("path");
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 2000;
 
 if (process.env.NODE_ENV === 'production') {
 
