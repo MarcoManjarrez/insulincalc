@@ -68,9 +68,7 @@ if (process.env.NODE_ENV === 'production') {
 
     app.use(express.static('client/build'));
 
-    app.get('*', (req,res) => 
-
- 	res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')));
+    app.get('*', (req,res) => res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')));
 }
 
 app.use("/", async (req, res, next) => {
@@ -93,7 +91,7 @@ app.get("/", (req, res) => {
 
 app.post("/login", async(req, res, next) => {
     var match = await User.findOne({user: {$eq: req.body.user}});
-
+    console.log("Match: "+match);
     var user = req.body.user;
     var password = req.body.password;
     var response = {user: user, password: password, access: "Denied", authorization: -1};
