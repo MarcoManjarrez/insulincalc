@@ -30,7 +30,7 @@ function History_and_Stadistics() {
 
     function obtainData() {
         var apiPath = "";
-        //if (process.env.NODE_ENV === "production") apiPath = "/api";
+        if (process.env.NODE_ENV === "production") apiPath = "/api";
 
         axios
             .get(apiPath+"/user")
