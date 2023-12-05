@@ -166,6 +166,9 @@ app.post("/upload", async(req, res, next) => {
 app.get("/user", async(req, res, next) => {
     try {
         var match = await User.findOne({ user: { $eq: logged_user.user } });
+        if (!match) {
+            return res.status(404).json({ error: "User not found" });
+          }
         res.json(match);
       } catch (error) {
         console.error(error);
