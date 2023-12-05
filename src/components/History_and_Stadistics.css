@@ -1,0 +1,24 @@
+#History {
+    width: 35%;
+    height: max-content;
+}
+
+.History_user {
+    margin-bottom: 10px;
+}
+
+#card_body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.Average_First_Month {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#data {
+    margin-left: 15px;
+}
