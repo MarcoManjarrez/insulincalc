@@ -35,12 +35,12 @@ function History_and_Stadistics() {
         axios
             .get(apiPath+"/user")
             .then((res) => {
-                console.log("Response of server 3", res);
+                console.log("Response of server 3", res.data);
                 setLoggedUser(res.data);
                 updateAvailableYears(res.data.calculator);
             })
             .catch((err) => {
-                console.error(err.error);
+                console.error(err.response.data);
             });
     }
 
