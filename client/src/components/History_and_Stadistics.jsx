@@ -41,6 +41,7 @@ function History_and_Stadistics() {
                     ...res.data,
                 }));
                 updateAvailableYears(res.data.calculator);
+                console.log(loggedUser.calculator);
             })
             .catch((err) => {
                 console.error(err.error);
