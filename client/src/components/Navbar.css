@@ -1,0 +1,23 @@
+.navbar {
+    padding: 0px;
+    margin-bottom: 40px;
+
+}
+
+.nav-link {
+    color: white;
+}
+
+#search {
+    margin-right: 15px;
+}
+
+#login {
+    margin-left: 15px;
+    margin-right: 5px;
+}
+
+#logout {
+    margin-left: 15px;
+    margin-right: 5px;
+}
