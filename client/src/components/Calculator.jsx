@@ -54,9 +54,7 @@ function Calculator() {
 
   function uploadData(event) {
     var apiPath = "";
-    if (process.env.NODE_ENV === "production") {
-      apiPath = "/api";
-    }
+    //if (process.env.NODE_ENV === "production") apiPath = "/api";
 
     axios
       .post(apiPath + "/upload", {
