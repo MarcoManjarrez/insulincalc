@@ -71,6 +71,13 @@ if (process.env.NODE_ENV === 'production') {
     app.get('*', (req,res) => res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')));
 }
 
+app.use((req, res, next) => {
+    console.log(`Incoming Request: ${req.method} ${req.url}`);
+    console.log("Request Headers:", req.headers);
+    console.log("Request Body:", req.body);
+    next();
+});
+
 app.use("/", async (req, res, next) => {
     var userCount = await User.countDocuments({});
 
