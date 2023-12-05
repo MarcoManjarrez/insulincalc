@@ -40,8 +40,8 @@ function History_and_Stadistics() {
                     ...prevLoggedUser,
                     ...res.data,
                 }));
-                updateAvailableYears(res.data.calculator);
                 console.log(loggedUser.calculator);
+                updateAvailableYears(res.data.calculator);
             })
             .catch((err) => {
                 console.error(err.error);
