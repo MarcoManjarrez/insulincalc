@@ -164,10 +164,13 @@ app.post("/upload", async(req, res, next) => {
 });
 
 app.get("/user", async(req, res, next) => {
-    var match = await User.findOne({user: {$eq: logged_user.user}});
-    res.json(match);
-
-    next();
+    try {
+        var match = await User.findOne({ user: { $eq: logged_user.user } });
+        res.json(match);
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+      }
 });
 
 app.listen(PORT, () => {
