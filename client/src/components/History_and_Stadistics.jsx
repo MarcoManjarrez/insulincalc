@@ -36,10 +36,12 @@ function History_and_Stadistics() {
             .get(apiPath+"/user")
             .then((res) => {
                 console.log("Response of server 3");
+                console.log(res.data);
                 setLoggedUser((prevLoggedUser) => ({
                     ...prevLoggedUser,
                     ...res.data,
                 }));
+                console.log("Now "+loggedUser);
                 updateAvailableYears(res.data.calculator);
             })
             .catch((err) => {
