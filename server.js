@@ -9,15 +9,6 @@ app.use(express.urlencoded({extended: true}));
 
 const PORT = process.env.PORT || 2000;
 
-if (process.env.NODE_ENV === 'production') {
-
-    app.use(express.static('client/build'));
-
-    app.get('*', (req,res) => 
-
- 	res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')));
-}
-
 const user = process.env.USER_ID;
 const password = process.env.USER_PASS;
 
